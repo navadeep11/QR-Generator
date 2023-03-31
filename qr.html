@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="qr.css">
+</head>
+<body>
+    <div class="con">
+        <div><h1>QR-GENERATOR</h1></div>
+        <div><input type="text" id="inp" placeholder="ENTER ANY INFO"></div>
+        <button id="btn">GENRATE QR-CODE</button>
+        <div id="img">
+            <img src="" alt="" id="qr">
+        </div>
+    </div>
+
+
+    <script>
+        let input=document.getElementById("inp")
+        let btn=document.getElementById('btn')
+        let img=document.getElementById('qr')
+        let prein
+
+        btn.onclick=function(){
+            let info=input.value.trim()
+
+            if(!info || info===prein){
+                img.src=""
+                img.style.border=""
+            }else{
+                prein=info
+                btn.innerText="GENRARING QR-CODE ....."
+                img.src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${info}`
+                img.style.border="1px solid black"
+                img.onload=()=>{
+                    btn.innerText="GENRARE QR-CODE"
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
